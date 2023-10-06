@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-gitlab-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-gitlab-app
+  template:
+    metadata:
+      labels:
+        app: my-gitlab-app
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD 
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+            
